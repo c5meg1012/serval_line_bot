@@ -28,6 +28,7 @@ class WebhookController < ApplicationController
           output_text = "ちょき！"
         when 3
           output_text = "ぱー！"
+        end
       elsif input_text.include?("たべないでください") || input_text.include?("食べないでください")
         output_text  = "たべないよ！"
       elsif input_text.include?("わーい！")
