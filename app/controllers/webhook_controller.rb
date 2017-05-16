@@ -18,7 +18,23 @@ class WebhookController < ApplicationController
     case event_type
     when "message"
       input_text = event["message"]["text"]
-      output_text = input_text
+      # output_text = input_text
+      if input_text.include?("じゃんけん") || input_text.include?("ジャンケン")
+        output_janken = [ 1, 2, 3 ].sample
+        case output_janken
+        when 1
+          output_text = "ぐー！"
+        when 2
+          output_text = "ちょき！"
+        when 3
+          output_text = "ぱー！"
+      elsif input_text.include?("たべないでください") || input_text.include?("食べないでください")
+        output_text  = "たべないよ！"
+      elsif input_text.include?("わーい！")
+        output_text  = "たーのしー！"
+      else
+        output_text = input_text
+      end
     end
 
     client = LineClient.new(CHANNEL_ACCESS_TOKEN, OUTBOUND_PROXY)
